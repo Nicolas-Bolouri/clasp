@@ -1,12 +1,9 @@
 ### To do list in the repository (will be deleted once completed)
 
-- Fill in missing links in the data prep docs
-- Write and test download script
-- Add citation to readme
-- Make sure env set up is seamless (+ on cpu)
-- Test all code again on CPU and GPU
-- Get external lab member to review code and docs
-- License the code
+- Upload data to Zenodo and fill in missing links in data preperation docs
+- Write an automatic download script once data published to Zenodo
+- Add citation to repository (.cff) and to readme
+- Get an external lab member to review the code and docs
 
 
 ----
