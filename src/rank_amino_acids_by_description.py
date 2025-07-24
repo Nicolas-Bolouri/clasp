@@ -9,7 +9,6 @@ from torch import Tensor
 from transformers import BioGptTokenizer, BioGptModel
 
 from models import CLASPAlignment
-from utils import create_clip_model_with_random_weights
 
 
 def embed_protein_description(description: str) -> Tensor:
@@ -163,8 +162,7 @@ def main() -> None:
         parser.error("Amino acid universe file must contain a JSON list")
 
     # load model
-    base_clip = create_clip_model_with_random_weights("ViT-B/32", device=device)
-    align_model = CLASPAlignment(base_clip, embed_dim=512).to(device)
+    align_model = CLASPAlignment(embed_dim=512).to(device)
     align_model.load_state_dict(
         torch.load(args.alignment_model_path, map_location=device)
     )

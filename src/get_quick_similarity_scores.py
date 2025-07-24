@@ -8,7 +8,6 @@ import torch
 from torch import Tensor
 
 from models import CLASPAlignment, CLASPEncoder
-from utils import create_clip_model_with_random_weights
 
 
 def compute_and_print_quick_similarity_scores(
@@ -165,8 +164,7 @@ def main() -> None:
     encoder.load_state_dict(torch.load(args.encoder_model_path, map_location=device))
     encoder.eval()
 
-    base_clip = create_clip_model_with_random_weights("ViT-B/32", device=device)
-    aligner = CLASPAlignment(base_clip, embed_dim=512).to(device)
+    aligner = CLASPAlignment(embed_dim=512).to(device)
     aligner.load_state_dict(torch.load(args.alignment_model_path, map_location=device))
     aligner.eval()
 

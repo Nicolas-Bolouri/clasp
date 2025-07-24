@@ -4,9 +4,8 @@ import torch.nn.functional as F
 
 
 class CLASPAlignment(nn.Module):
-    def __init__(self, clip_model, embed_dim=512, aas_dim=1024, desc_dim=1024):
+    def __init__(self, embed_dim=512, aas_dim=1024, desc_dim=1024):
         super(CLASPAlignment, self).__init__()
-        self.clip_model = clip_model
         self.pdb_projection = nn.Linear(embed_dim, embed_dim)
         self.aas_projection = nn.Linear(aas_dim, embed_dim)
         self.desc_projection = nn.Linear(desc_dim, embed_dim)

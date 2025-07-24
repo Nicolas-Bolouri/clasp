@@ -8,7 +8,6 @@ import torch
 from torch import Tensor
 
 from models import CLASPAlignment, CLASPEncoder
-from utils import create_clip_model_with_random_weights
 
 
 def generate_similarity_matrices(
@@ -237,8 +236,7 @@ def main() -> None:
     encoder.load_state_dict(torch.load(args.encoder_model_path, map_location=device))
     encoder.eval()
 
-    clip_base = create_clip_model_with_random_weights("ViT-B/32", device=device)
-    alignment = CLASPAlignment(clip_base, embed_dim=512).to(device)
+    alignment = CLASPAlignment(embed_dim=512).to(device)
     alignment.load_state_dict(
         torch.load(args.alignment_model_path, map_location=device)
     )

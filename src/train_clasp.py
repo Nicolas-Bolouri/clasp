@@ -11,7 +11,6 @@ from models import CLASPAlignment, CLASPLoss, CLASPEncoder
 from utils import (
     load_pairs,
     pair_3modal_collate_fn,
-    create_clip_model_with_random_weights,
 )
 
 
@@ -83,8 +82,7 @@ def train_clasp(
     patience = 40
 
     # models
-    clip_model = create_clip_model_with_random_weights("ViT-B/32", device=device)
-    model = CLASPAlignment(clip_model, embed_dim=512).to(device)
+    model = CLASPAlignment(embed_dim=512).to(device)
     criterion = CLASPLoss(temperature=0.07, l2_lambda=0.01)
     optimizer = torch.optim.Adam(
         list(model.parameters()) + list(pdb_encoder.parameters()), lr=lr

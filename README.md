@@ -1,15 +1,3 @@
-### To do list in the repository (will be deleted once completed)
-
-- Upload data to Zenodo and fill in missing links in data preperation docs
-- Write an automatic download script once data published to Zenodo
-- Add citation to repository (.cff) and to readme
-- Get an external lab member to review the code and docs
-
-
-----
-----
-----
-
 # CLASP: Contrastive Learning of Amino acid, Structure, and Protein description
 
 **CLASP** is a tri-modal contrastive learning framework for unified representation of protein structure, sequence, and description. It enables downstream applications such as cross-modal retrieval, similarity scoring, and zero-shot classification by learning a shared embedding space across all three modalities.
@@ -91,5 +79,5 @@ This repository provides a set of utilities and scripts for preparing data, trai
 
 ## Citation
 
-TBD
+Coming soon
 

@@ -1,6 +1,6 @@
 # Data preparation and preprocessing
 
-This section describes how to prepare the data for use with the CLASP framework, including embeddings for amino acid sequences, natural language descriptions, and PDB structures.
+This section describes how to prepare the data for use with the CLASP framework, including embeddings for amino acid sequences, natural language descriptions, and PDB structures. All datasets, embeddings, and models used in CLASP are available for download from our [Internet Archive](https://archive.org/details/clasp_data).
 
 ## Table of contents
 
@@ -18,7 +18,35 @@ This section describes how to prepare the data for use with the CLASP framework,
 
 ## Data download script
 
-TBD
+To simplify setup, we provide a convenience script: `scripts/download.sh`. This script downloads all datasets, embeddings, and model checkpoints required to run CLASP.
+
+From the root of the repository, make the script executable and run it:
+
+```bash
+chmod +x scripts/download.sh
+./scripts/download.sh
+```
+
+After running the script, the following directory structure will be created:
+
+```plaintext
+clasp_data/
+├── data/
+│   ├── processed_dataset/
+│   ├── aas_prott5_embeddings.h5
+│   ├── processed_pdb_data.pt
+│   ├── uniprot_desc_biogpt_embeddings.h5
+│   ├── upkb_pdb_mapping.jsonl
+├── final_models/
+```
+
+* The [`processed_dataset`](#using-our-precomputed-splits-and-pairs) directory contains data splits and pairings for training and evaluation.
+* The [`final_models`](#downloading-our-pre-trained-models) directory contains pre-trained CLASP model weights.
+
+Each of these directories is explained in detail in the sections below.
+
+
+
 
 
 ## Amino acid sequence embeddings
@@ -29,13 +57,13 @@ We use pre-trained amino acid sequence embeddings from ProtT5. You may use other
 * Keys: UniProt accession numbers
 * Values: 1024-dimensional embeddings (per protein)
 
-> [Download ProtT5 embeddings](?)
+> [Download ProtT5 embeddings](https://archive.org/download/clasp_data/clasp_data/data/aas_prott5_embeddings.h5)
 
 ## Language description embeddings
 
 We use BioGPT embeddings of UniProt protein descriptions.
 
->  [Download our language embeddings](?)
+>  [Download our language embeddings](https://archive.org/download/clasp_data/clasp_data/data/uniprot_desc_biogpt_embeddings.h5)
 
 You may also use your own language model embeddings. Just ensure they match the expected format:
 
@@ -55,7 +83,7 @@ CLASP embeds PDB data internally using a graph-based geometric encoder. The foll
 
 If you wish to use our preprocessed PDB data directly:
 
->  [Download our preprocessed PDB data](?)
+>  [Download our preprocessed PDB data](https://archive.org/download/clasp_data/clasp_data/data/processed_pdb_data.pt)
 
 
 
@@ -73,7 +101,7 @@ The script expects a `.jsonl` file where each line is a JSON object describing a
 
 If you wish to use our original mapping file, you can download it from the following link:
 
->  [Download our mapping file](?)
+>  [Download our mapping file](https://archive.org/download/clasp_data/clasp_data/data/upkb_pdb_mapping.jsonl)
 
 
 **Step 2: Run the preprocessing script**
@@ -126,12 +154,12 @@ We also preperared `(upkb_ac, pdb_id)` pairs for training, validation, and testi
 
 You can download our precomputed splits and corresponding pairs:
 
-> [Download our data splits and pairs](?)
+> [Download our data splits and pairs](https://archive.org/download/clasp_data/clasp_data/data/processed_dataset/)
 
 You will find the following files:
 
 ```plaintext
-processed/
+processed_dataset/
 ├── seed_26855092/
   ├── pairs/
     ├── test_pairs.jsonl
@@ -182,7 +210,7 @@ This directory path will be used when running the CLASP training script.
 
 While you can train CLASP from scratch using `src/train_clasp.py` (see details for training [here](training_clasp.md)), we provide pre-trained models for convenience. You can download them here:
 
-> [Download pre-trained CLASP models](?)
+> [Download pre-trained CLASP models](https://archive.org/download/clasp_data/clasp_data/final_models/)
 
 You will find the following files:
 
