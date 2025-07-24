@@ -7,7 +7,7 @@ This directory contains all documentation related to preparing data, training mo
 | Document                                           | Purpose                                                                           |
 | -------------------------------------------------- | --------------------------------------------------------------------------------- |
 | [`data_preparation.md`](data_preparation.md)       | Guide to downloading, generating, and formatting input data                       |
-| [`train_clasp.md`](train_clasp.md)                 | Instructions for training the CLASP model  |
+| [`training_clasp.md`](training_clasp.md)                 | Instructions for training the CLASP model  |
 | [`inference_utilities.md`](inference_utilities.md) | Tools for projecting embeddings, computing similarities, and retrieval            |
 
 ## Quick start
@@ -16,7 +16,7 @@ This directory contains all documentation related to preparing data, training mo
    Follow [`data_preparation.md`](data_preparation.md) to generate or download embeddings, PDB graphs, and train/val/test sets.
 
 2. **Train CLASP**
-   Use [`train_clasp.md`](train_clasp.md) to train your own CLASP model from scratch, or download pre-trained weights.
+   Use [`training_clasp.md`](training_clasp.md) to train your own CLASP model from scratch, or download pre-trained weights.
 
 3. **Run Inference**
    Follow [`inference_utilities.md`](inference_utilities.md) to:
