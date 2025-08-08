@@ -31,6 +31,7 @@ CLASP/
 ├── assets/                # directory for asset files
 ├── docs/                 
 │   ├── data_preparation.md
+│   ├── evaluation.md
 │   ├── inference_utilities.md
 │   ├── training_clasp.md
 │   └── README.md
