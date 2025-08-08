@@ -8,7 +8,9 @@
 2. [Repository structure](#repository-structure)
 3. [Environment setup](#environment-setup)
 4. [Documentation and usage](#documentation-and-usage)
-5. [Citation](#citation)
+5. [Versions tested](#versions-tested)
+6. [Typical install and run time](#typical-install-and-run-time)
+7. [Citation](#citation)
 
 ## Overview of the CLASP framework
 
@@ -36,6 +38,7 @@ CLASP/
 |   ├── models/            # model definitions for CLASP
 │   ├── utils/             # utility functions for data processing and model training
 │   ├── compute_similarity_matrices.py
+│   ├── eval_zero_shot_classification.py
 │   ├── get_quick_similarity_scores.py
 │   ├── preprocess_pdb_graphs.py
 │   ├── rank_amino_acids_by_description.py
@@ -67,15 +70,31 @@ pip install torch-scatter==2.1.2 -f https://data.pyg.org/whl/torch-2.6.0+cpu.htm
 
 ## Documentation and usage
 
-This repository provides a set of utilities and scripts for preparing data, training the CLASP model, and running inference. Below is a summary of key components, their purposes, and where to find detailed instructions. More information can be found [in the documentation](docs/README.md).
+This repository provides a set of utilities and scripts for preparing data, training the CLASP model, evaluating its performance, and running inference. Below is a summary of key components, their purposes, and where to find detailed instructions. More information can be found [in the documentation](docs/README.md).
 
 | Component                                                                            | Purpose                                                                                            | Documentation                                           |
 | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| [`preprocess_pdb_graphs.py`](src/preprocess_pdb_graphs.py)                     | Converts `.pdb` files into residue-level graphs compatible with CLASP                              | [`data_preparation.md`](docs/data_preparation.md)       |
-| [`compute_similarity_matrices.py`](src/compute_similarity_matrices.py)         | Computes projected embeddings and similarity matrices between structure, sequence, and description | [`inference_utilities.md`](docs/inference_utilities.md) |
-| [`get_quick_similarity_scores.py`](src/get_quick_similarity_scores.py)         | Prints similarity scores for a single triplet (structure, sequence, description)                   | [`inference_utilities.md`](docs/inference_utilities.md) |
-| [`rank_amino_acids_by_description.py`](src/rank_amino_acids_by_description.py) | Ranks amino acid sequences based on a natural language query                                       | [`inference_utilities.md`](docs/inference_utilities.md) |
-| [`train_clasp.py`](src/train_clasp.py)                                               | Main training script for CLASP                                      | [`train_clasp.md`](docs/train_clasp.md)                 |
+| [`preprocess_pdb_graphs.py`](src/preprocess_pdb_graphs.py)                           | Converts `.pdb` files into residue-level graphs compatible with CLASP                              | [`data_preparation.md`](docs/data_preparation.md)       |
+| [`compute_similarity_matrices.py`](src/compute_similarity_matrices.py)              | Computes projected embeddings and similarity matrices between structure, sequence, and description | [`inference_utilities.md`](docs/inference_utilities.md) |
+| [`get_quick_similarity_scores.py`](src/get_quick_similarity_scores.py)               | Prints similarity scores for a single triplet (structure, sequence, description)                   | [`inference_utilities.md`](docs/inference_utilities.md) |
+| [`rank_amino_acids_by_description.py`](src/rank_amino_acids_by_description.py)       | Ranks amino acid sequences based on a natural language query                                       | [`inference_utilities.md`](docs/inference_utilities.md) |
+| [`train_clasp.py`](src/train_clasp.py)                                               | Main training script for CLASP                                                                     | [`training_clasp.md`](docs/training_clasp.md)           |
+| [`eval_zero_shot_classification.py`](src/eval_zero_shot_classification.py)           | Evaluates a trained CLASP model on zero-shot classification tasks (PDB–AAS, PDB–DESC, AAS–DESC)    | [`evaluation.md`](docs/evaluation.md)                   |
+
+## Versions tested
+
+CLASP has been trained and tested with the following versions:
+
+- Python 3.10
+- PyTorch 2.6.0
+- Graphein 1.7
+
+For a full list of dependencies, please refer to the `environment.yml` file.
+
+## Typical install and run time
+
+The typical installation time for the CLASP environment is approximately 5-10 minutes, depending on your internet connection and system performance. The training time for the CLASP model on a standard GPU (e.g., NVIDIA RTX 3090 with 32 CPU cores) is approximately 13.08 hours (∼2 minutes per epoch) when using the datasets and hyperparameters specified in the documentation. The training time may vary based on the specific hardware configuration, dataset size, and hyperparameters used.
+
 
 ## Citation
 

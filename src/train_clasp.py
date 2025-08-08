@@ -1,58 +1,17 @@
 import argparse
 import random
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Tuple
 
 import torch
 import h5py
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import DataLoader
 
-from models import CLASPAlignment, CLASPLoss, CLASPEncoder
+from models import CLASPAlignment, CLASPLoss, CLASPEncoder, TriModalDataset
 from utils import (
     load_pairs,
     pair_3modal_collate_fn,
 )
-
-
-class TriModalDataset(Dataset):
-    """
-    Dataset yielding (amino_acid, description, pdb_graph) triples.
-    """
-
-    def __init__(
-        self,
-        pairs: List[Tuple[str, str]],
-        aa_embeddings: Dict[str, Any],
-        desc_embeddings: Dict[str, Any],
-        pdb_data: Dict[str, torch.Tensor],
-        device: torch.device,
-    ) -> None:
-        self.pairs = pairs
-        self.aa_embeddings = aa_embeddings
-        self.desc_embeddings = desc_embeddings
-        self.pdb_data = pdb_data
-        self.device = device
-
-    def __len__(self) -> int:
-        return len(self.pairs)
-
-    def __getitem__(
-        self, idx: int
-    ) -> Optional[Tuple[torch.Tensor, torch.Tensor, torch.Tensor]]:
-        upkb_ac, pdb_id = self.pairs[idx]
-
-        aa_emb = self.aa_embeddings.get(upkb_ac)
-        desc_emb = self.desc_embeddings.get(upkb_ac)
-        pdb_item = self.pdb_data.get(pdb_id)
-
-        if aa_emb is None or desc_emb is None or pdb_item is None:
-            return None
-
-        amino_acid_tensor = torch.tensor(aa_emb, dtype=torch.float32).to(self.device)
-        desc_tensor = torch.tensor(desc_emb, dtype=torch.float32).to(self.device)
-        pdb_tensor = pdb_item.to(self.device)
-
-        return amino_acid_tensor, desc_tensor, pdb_tensor
 
 
 def train_clasp(
@@ -199,17 +158,48 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Train 3D‑CLIP with tri‑modal contrastive learning"
     )
-    parser.add_argument("--aas_embeddings_file", type=Path, required=True)
-    parser.add_argument("--desc_embeddings_file", type=Path, required=True)
-    parser.add_argument("--preprocessed_pdb_file", type=Path, required=True)
-    parser.add_argument("--processed_data_dir", type=Path, required=True)
-    parser.add_argument("--checkpoint_dir", type=Path, default=Path("checkpoints"))
-    parser.add_argument("--output_dir", type=Path, default=Path("final_models"))
-    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument(
+        "--aas_embeddings_file",
+        type=Path,
+        required=True,
+        help="HDF5 file with amino acid embeddings",
+    )
+    parser.add_argument(
+        "--desc_embeddings_file",
+        type=Path,
+        required=True,
+        help="HDF5 file with description embeddings",
+    )
+    parser.add_argument(
+        "--preprocessed_pdb_file",
+        type=Path,
+        required=True,
+        help=".pt file with preprocessed PDB graphs",
+    )
+    parser.add_argument(
+        "--processed_data_dir",
+        type=Path,
+        required=True,
+        help="Directory with processed training data files",
+    )
+    parser.add_argument(
+        "--checkpoint_dir",
+        type=Path,
+        default=Path("checkpoints"),
+        help="Directory to save checkpoints",
+    )
+    parser.add_argument(
+        "--output_dir",
+        type=Path,
+        default=Path("final_models"),
+        help="Directory for final models",
+    )
+    parser.add_argument("--seed", type=int, default=42, help="Random seed")
     parser.add_argument(
         "--device",
         choices=["cpu", "cuda"],
         default="cuda" if torch.cuda.is_available() else "cpu",
+        help="Compute device",
     )
     args = parser.parse_args()
 

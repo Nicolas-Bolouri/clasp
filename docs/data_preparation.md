@@ -158,9 +158,15 @@ You can download our precomputed splits and corresponding pairs:
 
 You will find the following files:
 
+
 ```plaintext
 processed_dataset/
 ├── seed_26855092/
+  |── balanced_pairs/
+    ├── aas_desc_val_pairs.jsonl
+    ├── aas_desc_test_pairs.jsonl
+    ├── pdb_val_pairs.jsonl
+    ├── pdb_test_pairs.jsonl
   ├── pairs/
     ├── test_pairs.jsonl
     ├── train_pairs_a.jsonl
@@ -177,7 +183,7 @@ processed_dataset/
 ├── seed_686579303/ (same structure as above)
 ```
 
-Where `pairs` subdirectory contains the pairs for training, validation, and testing, and `split` subdirectory contains the split files for each seed.
+Where `pairs` subdirectory contains the pairs for training, validation, and testing, the `balanced_pairs` subdirectory contains a balanced set of pairs for classification validation and testing, and the `split` subdirectory contains the split files for each seed.
 
 Note: the `split` files are not needed for any task or training but are provided for reference. 
 

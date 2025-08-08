@@ -8,3 +8,6 @@ checkpoints
 # caches
 __pycache__
 .DS_Store
+
+# editor
+.vscode
