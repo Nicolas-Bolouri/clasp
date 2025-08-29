@@ -1,1 +1,36 @@
-Coming soon
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Multi-Modal Protein Representation Learning with CLASP"
+authors:
+  - family-names: "Bolouri"
+    given-names: "Nicolas"
+  - family-names: "Szymborski"
+    given-names: "Joseph"
+  - family-names: "Emad"
+    given-names: "Amin"
+date-released: 2025-08-10
+doi: "10.1101/2025.08.10.669533"
+url: "https://www.biorxiv.org/content/early/2025/08/12/2025.08.10.669533"
+identifiers:
+  - type: doi
+    value: "10.1101/2025.08.10.669533"
+  - type: url
+    value: "https://www.biorxiv.org/content/early/2025/08/12/2025.08.10.669533"
+version: "preprint"
+license: "CC-BY-4.0"
+repository-code: "https://github.com/Emad-COMBINE-lab/clasp"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Bolouri"
+      given-names: "Nicolas"
+    - family-names: "Szymborski"
+      given-names: "Joseph"
+    - family-names: "Emad"
+      given-names: "Amin"
+  title: "Multi-Modal Protein Representation Learning with CLASP"
+  journal: "bioRxiv"
+  publisher: "Cold Spring Harbor Laboratory"
+  year: 2025
+  doi: "10.1101/2025.08.10.669533"
+  url: "https://www.biorxiv.org/content/early/2025/08/12/2025.08.10.669533"
