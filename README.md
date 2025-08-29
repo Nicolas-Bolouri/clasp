@@ -1,6 +1,11 @@
 # CLASP: Contrastive Learning of Amino acid, Structure, and Protein description
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0.html)
+[![bioRxiv](https://img.shields.io/badge/bioRxiv-10.1101/2025.08.10.669533-B31B1B.svg)](https://doi.org/10.1101/2025.08.10.669533)
+
 **CLASP** is a tri-modal contrastive learning framework for unified representation of protein structure, sequence, and description. It enables downstream applications such as cross-modal retrieval, similarity scoring, and zero-shot classification by learning a shared embedding space across all three modalities.
+
+The implementation of CLASP is described in [*"Multi-Modal Protein Representation Learning with CLASP"*](https://doi.org/10.1101/2025.08.10.669533).
 
 
 ## Table of contents
@@ -10,7 +15,8 @@
 4. [Documentation and usage](#documentation-and-usage)
 5. [Versions tested](#versions-tested)
 6. [Typical install and run time](#typical-install-and-run-time)
-7. [Citation](#citation)
+7. [BibTex Citation](#bibtex-citation)
+8. [License](#license)
 
 ## Overview of the CLASP framework
 
@@ -97,7 +103,31 @@ For a full list of dependencies, please refer to the `environment.yml` file.
 The typical installation time for the CLASP environment is approximately 5-10 minutes, depending on your internet connection and system performance. The training time for the CLASP model on a standard GPU (e.g., NVIDIA RTX 3090 with 32 CPU cores) is approximately 13.08 hours (∼2 minutes per epoch) when using the datasets and hyperparameters specified in the documentation. The training time may vary based on the specific hardware configuration, dataset size, and hyperparameters used.
 
 
-## Citation
+## BibTex Citation
 
-Coming soon
+```bibtex
+@article{bolouri2025clasp,
+  title     = {Multi-Modal Protein Representation Learning with CLASP},
+  author    = {Bolouri, Nicolas and Szymborski, Joseph and Emad, Amin},
+  journal   = {bioRxiv},
+  year      = {2025},
+  doi       = {10.1101/2025.08.10.669533},
+  url       = {https://www.biorxiv.org/content/early/2025/08/12/2025.08.10.669533}
+}
+```
 
+
+## License
+
+Copyright (C) 2025 Emad's COMBINE Lab: Nicolas Bolouri, Joseph Szymborski, and Amin Emad.
+
+CLASP is free software: you can redistribute it and/or modify it under the terms of the  
+GNU General Public License as published by the Free Software Foundation, either version 3  
+of the License, or (at your option) any later version.
+
+CLASP is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without  
+even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the  
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with CLASP.  
+If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/).
